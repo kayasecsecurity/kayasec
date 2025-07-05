@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KAYASEC | Hakkımda</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/fav.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Rubik&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Rubik', sans-serif;
+    }
+    html, body {
+      height: 100%;
+      background: url('assets/background.gif') no-repeat center center fixed;
+      background-size: cover;
+      background-color: #121212;
+      color: #d0d0d0;
+      display: flex;
+      flex-direction: column;
+    }
+    body {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      flex: 1;
+    }
+    body.fade-in {
+      opacity: 1;
+    }
+    body.fade-out {
+      opacity: 0;
+    }
+
+    main.about {
+      flex: 1;
+      max-width: 720px;
+      margin: 2rem auto 2rem;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 3rem;
+      text-align: center;
+      color: #cdcdcd;
+      margin-bottom: 2.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    }
+
+    /* FAQ kutuları */
+    .faq-item {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      user-select: text;
+    }
+    .faq-item:hover {
+      box-shadow: 0 0 18px rgba(255,255,255,0.08), 0 0 28px rgba(255,255,255,0.06);
+      transform: translateY(-3px);
+    }
+
+    .faq-question {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-answer {
+      font-size: 1rem;
+      color: #bcbcbc;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.5s ease;
+      margin-top: 0;
+      line-height: 1.5;
+      user-select: text;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      opacity: 1;
+      margin-top: 1rem;
+    }
+
+    .faq-icon {
+      display: inline-block;
+      transition: transform 0.4s ease, opacity 0.3s ease;
+      font-size: 1.4rem;
+      user-select: none;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg) scale(1.2);
+    }
+
+    /* Glow pulse effect */
+    .faq-item::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      left: -40%;
+      width: 180%;
+      height: 180%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.03), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      border-radius: 16px;
+    }
+
+    .faq-item:hover::before {
+      opacity: 1;
+    }
+
+    /* Ana Sayfaya Dön butonu */
+    .back-home {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .back-home a {
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 1rem 2.5rem;
+      border-radius: 12px;
+      background: transparent;
+      color: #d0d0d0;
+      border: 2px solid #d0d0d0;
+      text-decoration: none;
+      transition: 
+        background-color 0.3s ease, 
+        color 0.3s ease, 
+        transform 0.2s ease;
+      display: inline-block;
+    }
+    .back-home a:hover {
+      background-color: #d0d0d0;
+      color: #121212;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: rgba(30,30,30,0.9);
+      text-align: center;
+      padding: 1.5rem 0;
+      font-size: 0.9rem;
+      color: #777;
+      user-select: none;
+      margin-top: auto;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.4rem;
+        margin-bottom: 2rem;
+      }
+      .back-home a {
+        font-size: 0.9rem;
+        padding: 0.35rem 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="about">
+    <h1>Hakkımda</h1>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Ben Kimim?
+        <span class="faq-icon">▼</span>
+      </div>
+      <div class="faq-answer">
+        Merhaba, ben KAYASEC. Siber güvenlik dünyasında aktif olarak yer alıyor, bug bounty ve sızma testleri alanında uzmanlaşıyorum.  
+        Amacım; kurumların ve bireylerin dijital varlıklarını korumak, güvenlik açıklarını bularak çözüm üretmek.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Ne tür hizmetler veriyorum?
+        <span class="faq-icon">▼</span>
+      </div>
+      <div class="faq-answer">
+        Web uygulama güvenliği, mobil güvenlik, red team faaliyetleri, bug bounty programları ve detaylı pentest raporlama konularında hizmet sunuyorum.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Neden beni tercih etmelisiniz?
+        <span class="faq-icon">▼</span>
+      </div>
+      <div class="faq-answer">
+        Yenilikçi ve pratik yaklaşımla en güncel güvenlik açıklarını hızlıca tespit edip, kurumsal risklerinizi minimize ediyorum.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Uzmanlık alanlarım nelerdir?
+        <span class="faq-icon">▼</span>
+      </div>
+      <div class="faq-answer">
+        Bug Bounty, Web Uygulama Güvenliği, Mobil Güvenlik, Red Team Hizmetleri, Pentest Raporlama ve Sızma Testleri.
+      </div>
+    </div>
+
+    <div class="back-home">
+      <a href="index.html">Ana Sayfaya Dön</a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 KayaSec. Tüm hakları saklıdır.
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.body.classList.add('fade-in');
+    });
+
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        document.body.classList.add('fade-in');
+      }
+    });
+
+    document.querySelectorAll("a[href]").forEach(link => {
+      const href = link.getAttribute("href");
+      const isInternal = href && !href.startsWith("http") && !href.startsWith("mailto:");
+
+      if (isInternal) {
+        link.addEventListener("click", function(e) {
+          e.preventDefault();
+          document.body.classList.remove("fade-in");
+          document.body.classList.add("fade-out");
+          setTimeout(() => {
+            window.location.href = href;
+          }, 400);
+        });
+      }
+    });
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
